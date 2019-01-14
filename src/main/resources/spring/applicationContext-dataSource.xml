@@ -13,7 +13,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="${data_source_url}" />
         <property name="username" value="${data_source_username}" />
-        <property name="password" value="${data_source_passworddata_source_password}" />
+        <property name="password" value="${data_source_password}" />
         &lt;!&ndash; 初始化连接大小 &ndash;&gt;
         <property name="initialSize" value="0"></property>
         &lt;!&ndash; 连接池最大数量 &ndash;&gt;
@@ -61,17 +61,17 @@ http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
         <property name="testOnReturn" value="false"/>
 
 
-        <!--当程序存在缺陷时，申请的连接忘记关闭，这时候，就存在连接泄漏了。Druid提供了RemoveAbandanded相关配置，用来关闭长时间不使用的连接-->
+        <!--当程序存在缺陷时，申请的连接忘记关闭，这时候，就存在连接泄漏了。Druid提供了removeAbandoned相关配置，用来关闭长时间不使用的连接-->
         <!--配置removeAbandoned对性能会有一些影响，建议怀疑存在泄漏之后再打开。在上面的配置中，如果连接超过30分钟未关闭，就会被强行回收，并且日志记录连接申请时的调用堆栈。-->
         <!--具体查看官网信息：https://github.com/alibaba/druid/wiki/%E8%BF%9E%E6%8E%A5%E6%B3%84%E6%BC%8F%E7%9B%91%E6%B5%8B-->
         <!-- 打开removeAbandoned功能 -->
         <property name="removeAbandoned" value="true"/>
         <!-- 1800秒，也就是30分钟 -->
         <property name="removeAbandonedTimeout" value="1800"/>
-        <!-- 关闭abanded连接时输出错误日志 -->
+        <!-- 关闭abandoned连接时输出错误日志 -->
         <property name="logAbandoned" value="true"/>
 
-        <!-- 配置监控统计拦截的filters-->
+        <!-- 配置监控统计拦截的filters -->
         <!--官网信息：https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_StatFilter-->
         <!--mergeSql可以合并输出的sql，方便查看，但是在mybatis框架中使用这个则无法监控sql,需要用stat-->
         <!--<property name="filters" value="mergeSql,log4j"/>-->
